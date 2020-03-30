@@ -26,10 +26,9 @@ def home():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     """Render profile's page."""
-    if request.method == 'GET':
+    if request.method == 'GET' and type(request.args.get("userid")) == str:
         userid = request.args.get("userid")
-        person = ProfileDB.query.get(userid)
-
+        person = ProfileDB.query.get(int(userid))
         fname = person.fname
         lname = person.lname
         email = person.email
@@ -39,9 +38,9 @@ def profile():
         filename = person.filename
         date_created = person.date_created
 
-        created_on = [date_created.year, date_created.month, date_created.day]
+        year, month, day = date_created.year, date_created.month, date_created.day
         
-        return redirect(url_for('home'))
+        return render_template('person.html', fname=fname, lname=lname, email=email, location=location, gender=gender, biography=biography, filename=filename, year=year, month=month, day=day)
 
     profile = Profile()
     if request.method == 'POST' and profile.validate_on_submit():
