@@ -23,17 +23,15 @@
         {% include "header.html" %}
     </header>
 
-    <main>
-        <div class="container">
-            {% block main %}{% endblock %}
-        </div>
-    </main>
+    <div class="container">
 
-    <footer>
-        <div class="container">
-            {% include "footer.html" %}
-        </div>
-    </footer>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+
+    </div>
+
+    {% include "footer.html" %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
