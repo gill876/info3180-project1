@@ -10,7 +10,42 @@
     {{filename}}
     {{year}}
     {{month}}
-    {{day}}
+    {{day}} 
 
-    
+    <div class="card">
+
+        <div class="row">
+            <div class="col-4">
+                <img src="{{url_for('static', filename='uploads/' + filename)}}" class="card-img img-thumbnail w-20 h-20" alt="...">
+            </div>
+
+            <div class="col-8">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
 {% endblock %}

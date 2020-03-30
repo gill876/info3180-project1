@@ -23,9 +23,8 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
-@app.route('/profile', methods=['GET', 'POST'])
-def profile():
-    """Render profile's page."""
+@app.route('/profile/<userid>', methods=['GET', 'POST'])
+def person(userid):
     if request.method == 'GET' and type(request.args.get("userid")) == str:
         userid = request.args.get("userid")
         person = ProfileDB.query.get(int(userid))
@@ -42,6 +41,9 @@ def profile():
         
         return render_template('person.html', fname=fname, lname=lname, email=email, location=location, gender=gender, biography=biography, filename=filename, year=year, month=month, day=day)
 
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    """Render profile's page."""
     profile = Profile()
     if request.method == 'POST' and profile.validate_on_submit():
         fname = profile.fname.data
