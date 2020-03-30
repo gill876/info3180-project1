@@ -10,9 +10,9 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '?.jDTL_ge}PeG{v>ecXeG+64(eLc$D2c53Ku)w'
 app.config['UPLOAD_FOLDER'] = './app/static/uploads'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://cargill_db:password@localhost/krace_gennedy'
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/profile_db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 #mail = Mail(app)
 csrf = CSRFProtect(app)
