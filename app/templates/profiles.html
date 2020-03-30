@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="row justify-content-center">
+        <div class="col mt-5 bg-info rounded">
+            <div class="text-center display-4 font-weight-light text-white">Profiles</div>
+        </div>
+    </div>
+
+    <!--Each card-->
+    {% if persons %}
+        {% for person in persons %}
+            <div class="row">
+                <div class="col mt-5">
+                    <div class="card mb-3">
+                        <div class="row no-gutters">
+
+                            <div class="col-5">
+                                <img src="{{url_for('static', filename='uploads/' + person.filename)}}" class="card-img img-thumbnail w-20 h-20" alt="Profile picture of {{ person.fname }} {{ person.lname }}">
+                            </div>
+
+                            <div class="col-5">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3 class="card-title">{{ person.fname }} {{ person.lname }}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <svg class="bi bi-person-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </div>
+                                        <div class="col-10">
+                                            <p class="pt-2">{{ person.gender }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-2">
+                                            <svg class="bi bi-geo-alt" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </div>
+                                        <div class="col-10">
+                                            <p class="pt-2">{{ person.location }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="row ">
+                                    <div class="col">
+                                        <button type="button" class="btn btn-outline-success">View Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

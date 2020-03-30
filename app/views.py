@@ -49,10 +49,26 @@ def profile():
     flash_errors(profile)
     return render_template('profile.html', form=profile)
 
+@app.route('/profiles')
+def profiles():
+    """Render profiles' page."""
+    persons = ProfileDB.query.all()
+    return render_template('profiles.html', persons=persons)
 
 ###
 # The functions below should be applicable to all Flask apps.
 ###
+
+def get_uploaded_images():
+    rootdir = os.getcwd()
+    #return rootdir
+    images = []
+    for subdir, dirs, files in os.walk(rootdir + '/app/static/uploads'):
+        for file in files:
+            #test.append(os.path.join(subdir, file))
+            if ".gitkeep" not in file:
+                images.append(file)
+    return images
 
 def format_date_joined():
     now = datetime.datetime.now() # today's date
