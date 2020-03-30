@@ -5,16 +5,17 @@ from flask_mail import Mail
 from flask_wtf.csrf import CSRFProtect
 import os
 from dotenv import load_dotenv
-load_dotenv(verbose=True)
+#load_dotenv(verbose=True)
 
 app = Flask(__name__)
-#app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")#change to 'Som3$ec5etK*y'
+app.config['SECRET_KEY'] = '?.jDTL_ge}PeG{v>ecXeG+64(eLc$D2c53Ku)w'
+app.config['UPLOAD_FOLDER'] = './app/static/uploads'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://cargill_db:password@localhost/krace_gennedy'
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #db = SQLAlchemy(app)
 
 #mail = Mail(app)
-#csrf = CSRFProtect(app)
-#csrf.init_app(app)
+csrf = CSRFProtect(app)
+csrf.init_app(app)
 
 from app import views, models

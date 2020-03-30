@@ -5,8 +5,11 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
+import os
 from app import app
 from flask import render_template, request, redirect, url_for, flash
+from .forms import Profile
+from werkzeug.utils import secure_filename
 
 
 ###
@@ -18,10 +21,27 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
     """Render profile's page."""
-    return render_template('profile.html')
+    profile = Profile()
+    if request.method == 'POST' and profile.validate_on_submit():
+        fname = profile.fname.data
+        lname = profile.lname.data
+        email = profile.email.data
+        location = profile.gender.data
+        gender = profile.gender.data
+        biography = profile.biography.data
+        profile_img = profile.profile_img.data
+        filename = secure_filename(profile_img.filename)
+        
+        
+        # profile_img.save(os.path.join(
+        #     app.config['UPLOAD_FOLDER'], filename
+        # ))
+            
+        flash('File Saved', 'success')
+    return render_template('profile.html', form=profile)
 
 
 ###

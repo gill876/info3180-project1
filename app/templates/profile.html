@@ -1,22 +1,51 @@
 {% extends "base.html" %}
 
 {% block main %}
-    <div class="row">
-        <div class="col-8">
-            <form>
+    <div class="row justify-content-center">
+        <div class="col-8 mt-5 bg-info rounded">
+            <div class="text-center display-4 font-weight-light text-white">Add Profile</div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-8 my-4">
+            <form method="post" action="{{ url_for('profile') }}">
+                
+                {{ form.csrf_token }}
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    {{ form.fname.label }} 
+                    {{ form.fname(class="form-control") }}
                 </div>
+
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    {{ form.lname.label }}
+                    {{ form.lname(class="form-control") }}
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(class="form-control") }}
                 </div>
+
+                <div class="form-group">
+                    {{ form.location.label }}
+                    {{ form.location(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.gender.label }}
+                    {{ form.gender(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.biography.label }}
+                    {{ form.biography(class="form-control") }}
+                </div>
+
+                <div class="custom-file mb-5">
+                    {{ form.profile_img.label(class="custom-file-label") }}
+                    {{ form.profile_img(class="custom-file-input") }}
+                </div>
+                
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
