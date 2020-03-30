@@ -1,4 +1,5 @@
 from . import db
+import datetime
 
 class ProfileDB(db.Model):
     __tablename__ = 'profiles'
@@ -11,6 +12,7 @@ class ProfileDB(db.Model):
     gender = db.Column(db.String(10))
     biography = db.Column(db.String(500))
     filename = db.Column(db.String(250))
+    date_created = db.Column(db.DateTime, default=datetime.date.today())
 
     def __init__(self, fname, lname, email, location, gender, biography, filename):
         self.fname = fname

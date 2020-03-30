@@ -49,6 +49,8 @@ def profile():
     flash_errors(profile)
     return render_template('profile.html', form=profile)
 
+#@app.route('/profile/<>')
+
 @app.route('/profiles')
 def profiles():
     """Render profiles' page."""
