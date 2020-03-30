@@ -26,6 +26,23 @@ def home():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     """Render profile's page."""
+    if request.method == 'GET':
+        userid = request.args.get("userid")
+        person = ProfileDB.query.get(userid)
+
+        fname = person.fname
+        lname = person.lname
+        email = person.email
+        location = person.location
+        gender = person.gender
+        biography = person.biography
+        filename = person.filename
+        date_created = person.date_created
+
+        created_on = [date_created.year, date_created.month, date_created.day]
+        
+        return redirect(url_for('home'))
+
     profile = Profile()
     if request.method == 'POST' and profile.validate_on_submit():
         fname = profile.fname.data
@@ -48,8 +65,6 @@ def profile():
         return redirect(url_for('home'))
     flash_errors(profile)
     return render_template('profile.html', form=profile)
-
-#@app.route('/profile/<>')
 
 @app.route('/profiles')
 def profiles():
