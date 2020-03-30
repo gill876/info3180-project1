@@ -9,6 +9,8 @@ import os
 from app import app
 from flask import render_template, request, redirect, url_for, flash
 from .forms import Profile
+from app.models import ProfileDB
+from . import db
 from werkzeug.utils import secure_filename
 
 
@@ -29,18 +31,22 @@ def profile():
         fname = profile.fname.data
         lname = profile.lname.data
         email = profile.email.data
-        location = profile.gender.data
+        location = profile.location.data
         gender = profile.gender.data
         biography = profile.biography.data
         profile_img = profile.profile_img.data
         filename = secure_filename(profile_img.filename)
         
-        
-        # profile_img.save(os.path.join(
-        #     app.config['UPLOAD_FOLDER'], filename
-        # ))
+        person = ProfileDB(fname, lname, email, location, gender, biography, filename)
+        db.session.add(person)
+        db.session.commit()
+        profile_img.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], filename
+        ))
             
-        flash('File Saved', 'success')
+        flash('Profile added!', 'success')
+        return redirect(url_for('home'))
+    flash_errors(profile)
     return render_template('profile.html', form=profile)
 
 
@@ -72,6 +78,14 @@ def format_date_joined():
 #     response.headers['Cache-Control'] = 'public, max-age=0'
 #     return response
 
+# Flash errors from the form if validation fails
+def flash_errors(form):
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text,
+                error
+            ), 'danger')
 
 @app.errorhandler(404)
 def page_not_found(error):

@@ -8,7 +8,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-8 my-4">
-            <form method="post" action="{{ url_for('profile') }}">
+            <form method="post" action="{{ url_for('profile') }}" enctype="multipart/form-data">
                 {% include 'flash_messages.html' %}
                 {{ form.csrf_token }}
                 <div class="form-group">
