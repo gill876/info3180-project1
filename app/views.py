@@ -25,21 +25,22 @@ def home():
 
 @app.route('/profile/<userid>', methods=['GET', 'POST'])
 def person(userid):
-    if request.method == 'GET' and type(request.args.get("userid")) == str:
-        userid = request.args.get("userid")
+    if request.method == 'GET':
         person = ProfileDB.query.get(int(userid))
-        fname = person.fname
-        lname = person.lname
-        email = person.email
-        location = person.location
-        gender = person.gender
-        biography = person.biography
-        filename = person.filename
-        date_created = person.date_created
+        if person != None:
+            fname = person.fname
+            lname = person.lname
+            email = person.email
+            location = person.location
+            gender = person.gender
+            biography = person.biography
+            filename = person.filename
+            date_created = person.date_created
 
-        year, month, day = date_created.year, date_created.month, date_created.day
-        
-        return render_template('person.html', fname=fname, lname=lname, email=email, location=location, gender=gender, biography=biography, filename=filename, year=year, month=month, day=day)
+            year, month, day = date_created.year, date_created.month, date_created.day
+            
+            return render_template('person.html', fname=fname, lname=lname, email=email, location=location, gender=gender, biography=biography, filename=filename, year=year, month=month, day=day)
+    return 'hello'
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
