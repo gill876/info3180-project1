@@ -37,10 +37,11 @@ def person(userid):
             filename = person.filename
             date_created = person.date_created
 
-            year, month, day = date_created.year, date_created.month, date_created.day
+            year, month, day = date_created.year, date_created.strftime("%B"), date_created.day
             
             return render_template('person.html', fname=fname, lname=lname, email=email, location=location, gender=gender, biography=biography, filename=filename, year=year, month=month, day=day)
-    return 'hello'
+    flash('Error in retrieving user', 'danger')
+    return redirect(url_for('home'))
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():

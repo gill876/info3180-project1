@@ -1,51 +1,101 @@
 {% extends "base.html" %}
 
 {% block main %}
-    {{fname}}
-    {{lname}}
-    {{email}}
-    {{location}}
-    {{gender}}
-    {{biography}}
-    {{filename}}
-    {{year}}
-    {{month}}
-    {{day}} 
+    <div class="row mt-5 bg-info py-3 ">
+        <div class="col">
+            <div class="card">
 
-    <div class="card">
+                <!--Row for Photo and Data-->
+                <div class="row mt-4">
+                    <div class="col-4">
+                        <img src="{{url_for('static', filename='uploads/' + filename)}}" class="card-img img-thumbnail w-20 h-20" alt="Profile picture of {{fname}} {{lname}}">
+                    </div>
 
-        <div class="row">
-            <div class="col-4">
-                <img src="{{url_for('static', filename='uploads/' + filename)}}" class="card-img img-thumbnail w-20 h-20" alt="...">
+                    <div class="col-8 pl-5">
+                        <!--Row for first and last name-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-3 h2 font-weight-bolder">
+                                    {{fname}} {{lname}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Rows for other data-->
+                        <div class="row py-2">
+                            <div class="col-1 mr-2">
+                                <svg class="bi bi-envelope-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="grey" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M.05 3.555L8 8.414l7.95-4.859A2 2 0 0014 2H2A2 2 0 00.05 3.555zM16 4.697l-5.875 3.59L16 11.743V4.697zm-.168 8.108L9.157 8.879 8 9.586l-1.157-.707-6.675 3.926A2 2 0 002 14h12a2 2 0 001.832-1.195zM0 11.743l5.875-3.456L0 4.697v7.046z"/>
+                                </svg>
+                            </div>
+
+                            <div class="col-9">
+                                <a class="text-muted" href="mailto:{{email}}" target="_blank">
+                                    {{email}}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col-1 mr-2">
+                                <svg class="bi bi-geo-alt" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="grey" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+
+                            <div class="col-9">
+                                <div class="text-muted">
+                                    {{location}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col-1 mr-2">
+                                <svg class="bi bi-calendar-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="grey" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 2a2 2 0 012-2h12a2 2 0 012 2H0z"/>
+                                    <path fill-rule="evenodd" d="M0 3h16v11a2 2 0 01-2 2H2a2 2 0 01-2-2V3zm6.5 4a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm-8 2a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm-8 2a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+
+                            <div class="col-9">
+                                <div class="text-muted">
+                                    Joined on {{month}} {{day}}, {{year}}
+                                </div>
+                            </div>
+                        </div>
+                        <!--Data ends here-->
+                    </div>
+                </div>
+
+                <!--Row for About Me Title-->
+                <div class="row">
+                    <div class="col">
+                        <div class="text-left pl-5 pt-4 h4 font-weight-bold">
+                            About Me
+                        </div>
+                    </div>
+                </div>
+
+                <!--Row for Biography-->
+                <div class="row">
+                    <div class="col">
+                        <div class="mt-3 pl-5 text-left">
+                            {{biography}}
+                        </div>
+                    </div>
+                </div>
+
+                <!--Row for buttons-->
+                <div class="row justify-content-around my-4">
+                    <div class="col-3 ml-5">
+                        <button type="button" class="btn btn-success">Send Message</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-info">Follow</button>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-8">
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                
-            </div>
-        </div>
-
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
 {% endblock %}
